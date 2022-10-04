@@ -27,6 +27,26 @@
             </span>
         </a>
     </div>
+    <div class="detail__songs mb-5">
+        <h3 class="title is-3">Health Info</h3>
+
+        {% for health in dog.health.all %}
+            <div class="song">
+                <span>{{forloop.counter}}</span>
+                <span><b>{{health.height}}</b></span>
+                <span><b>{{health.weight}}</b></span>
+                <span><b>{{health.life_expectancy}}</b></span>
+                <span>{{health.length}}</span>
+            </div>
+        {% empty %}
+            <article class="message">
+                <div class="message-header">
+                    <p>No Health Information Available</p>
+                </div>
+            </article>
+
+        {% endfor %}
+    </div>
     <div class="detail__about">
         <h4 class="title is-4">About</h4>
         <p>{{dog.bio}}</p>

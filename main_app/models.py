@@ -13,3 +13,13 @@ class Dog(models.Model):
 
     class Meta:
         ordering = ["name"]
+
+
+class Health(models.Model):
+    height = models.IntegerField(default=0)
+    weight = models.IntegerField(default=0)
+    life_expectancy = models.IntegerField(default=0)
+    dog = models.ForeignKey(Dog, on_delete=models.CASCADE, related_name="health")
+
+    def __str__(self):
+        return self.title
