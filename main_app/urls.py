@@ -9,5 +9,4 @@ urlpatterns = [
     path('dogs/new', views.DogCreate.as_view(), name="dog_create"),
     path('dogs/<int:pk>/', views.DogDetail.as_view(), name="dog_detail"),
     path('dogs/<int:pk>/update', views.DogUpdate.as_view(), name="dog_update"),
-    
 ]
