@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
+from .models import Dog
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import DetailView
 
 # Create your views here.
 
@@ -11,11 +14,11 @@ class Home(TemplateView):
 class About(TemplateView):
     template_name = "about.html"
 
-class Dog:
-    def __init__(self, name, image, bio):
-        self.name = name
-        self.image = image
-        self.bio = bio
+# class Dog:
+#     def __init__(self, name, image, bio):
+#         self.name = name
+#         self.image = image
+#         self.bio = bio
 
 dogs = [
     Dog("English Bulldog", "https://media.cnn.com/api/v1/images/stellar/prod/220615105053-unhealthy-english-bulldogs.jpg", "The Bulldog is a British breed of dog of mastiff type. It may also be known as the English Bulldog or British Bulldog. It is of medium size, a muscular, hefty dog with a wrinkled face and a distinctive pushed-in nose."),
@@ -28,5 +31,27 @@ class DogList(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["dogs"] = dogs 
+        name = self.request.GET.get("name")
+        if name != None:
+            context["dogs"] = Dog.objects.filter(name__icontains=name)
+            context["header"] = f"Searching for {name}"
+        else:
+            context["dogs"] = Dog.objects.all()
+            context["header"] = "Trending Dogs" 
         return context
+
+class DogCreate(CreateView):
+    model = Dog
+    fields = ['name', 'img', 'bio', 'hypoallergenic']
+    template_name = "dog_create.html"
+    succuss_url = "/dogs/"
+
+class DogDetail(DetailView):
+    model = Dog
+    template_name = "dog_detail.html"
+
+class DogUpdate(UpdateView):
+    model = Dog
+    fields = ['name', 'img', 'bio', 'hypoallergenic']
+    template_name = "dog_update.html"
+    success_url = "/dogs/"

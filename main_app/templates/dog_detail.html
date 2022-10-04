@@ -1,0 +1,36 @@
+{% extends 'base.html' %} 
+{% block content %}
+<div class="detail__img">
+    <img src="{{dog.img}}" alt="{{dog.name}}" />
+</div>
+<div class="detail__name">
+    {% if dog.hypoallergenic %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>Hypoallergenic</span>
+    </div>
+    {% endif %}
+    <h1 class="title">{{dog.name}}</h1>
+</div>
+<div class="detail__container">
+    <div class="buttons">
+        <a href="" class="button is-info">
+            <span class="icon">
+                <i class="fas fa-edit"></i>
+            </span>
+        </a>
+        <a href="" class="button is-danger">
+            <span class="icon">
+                <i class="fas fa-trash-alt"></i>
+            </span>
+        </a>
+    </div>
+    <div class="detail__about">
+        <h4 class="title is-4">About</h4>
+        <p>{{dog.bio}}</p>
+    </div>
+</div>
+
+{% endblock %}
