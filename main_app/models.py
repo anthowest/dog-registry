@@ -15,11 +15,10 @@ class Dog(models.Model):
         ordering = ["name"]
 
 
-class Health(models.Model):
-    height = models.IntegerField(default=0)
-    weight = models.IntegerField(default=0)
-    life_expectancy = models.IntegerField(default=0)
-    dog = models.ForeignKey(Dog, on_delete=models.CASCADE, related_name="health")
+class History(models.Model):
+    nationality = models.CharField(max_length=30)
+    year_recognized = models.IntegerField(default=0)
+    dog = models.ForeignKey(Dog, on_delete=models.CASCADE, related_name="historys")
 
     def __str__(self):
-        return self.title
+        return self.nationality
