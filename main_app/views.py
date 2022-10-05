@@ -70,3 +70,12 @@ class HistoryCreate(View):
         dog = Dog.objects.get(pk=pk)
         History.objects.create(nationality=nationality, year_recognized=year_recognized, dog=dog)
         return redirect('dog_detail', pk=pk)
+
+class SizeDogAssoc(View):
+    def get(self, request, pk, dog_pk):
+        assoc = request.GET.get("assoc")
+        if assoc == "remove":
+            Size.objects.get(pk=pk).dogs.remove(dog_pk)
+        if assoc =="add":
+            Size.objects.get(pk=pk).dogs.add(dog_pk)
+        return redirect('home')
