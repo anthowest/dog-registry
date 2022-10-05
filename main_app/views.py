@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
-from .models import Dog
+from .models import Dog, History
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.urls import reverse
@@ -56,3 +56,11 @@ class DogDelete(DeleteView):
     model = Dog 
     template_name = "dog_delete_confirmation.html"
     success_url = "/dogs/"
+
+class HistoryCreate(View):
+    def post(self, request, pk):
+        nationality = request.POST.get("nationality")
+        year_recognized = request.POST.get("year_recognized")
+        dog = Dog.objects.get(pk=pk)
+        History.objects.create(nationality=nationality, year_recognized=year_recognized, dog=dog)
+        return redirect('dog_detail', pk=pk)

@@ -27,9 +27,35 @@
             </span>
         </a>
     </div>
+    <form class="mb-5" action="{% url 'history_create' dog.pk %}" method="post">
+        {% csrf_token %}
+        <div class="field has-addons">
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    name="nationality"
+                    placeholder="Nationality"
+                    required
+                />
+            </div>
+            <div class="control">
+                <input
+                    class="input"
+                    type="number"
+                    name="year_recognized"
+                    placeholder="Year AKC Recognized"
+                    min="1"
+                    required
+                />
+            </div>
+            <div class="control">
+                <input class="button is-primary" type="submit" value="Add History" />
+            </div>
+        </div>
+    </form>
     <div class="detail__songs mb-5">
         <h3 class="title is-3">History</h3>
-
         {% for history in dog.historys.all %}
             <div class="song">
                 <span>{{forloop.counter}}</span>

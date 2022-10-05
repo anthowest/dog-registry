@@ -10,4 +10,5 @@ urlpatterns = [
     path('dogs/<int:pk>/', views.DogDetail.as_view(), name="dog_detail"),
     path('dogs/<int:pk>/update', views.DogUpdate.as_view(), name="dog_update"),
     path('dogs/<int:pk>/delete', views.DogDelete.as_view(), name="dog_delete"),
+    path('dogs/<int:pk>/history/new/', views.HistoryCreate.as_view(), name="history_create"),
 ]
