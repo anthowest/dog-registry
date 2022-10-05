@@ -9,7 +9,26 @@
     <body>
         {% extends 'base.html' %}
         {% block content %}
-        <h1>Home</h1>
+        <div class="home__playlists">
+            {% for size in sizes %}
+        
+                <div class="playlist mb-5">
+                    <h3 class="title is-3 has-text-success">{{size.size}}</h3>
+                    <hr />
+        
+                    {% for dog in size.dogs.all %}
+        
+                        <div class="song">
+                            <span>{{forloop.counter}}</span>
+                            <span><b>{{dog.name}}</b></span>
+                        </div>
+        
+                    {% endfor %}
+                </div>
+            {% empty %} 
+                <div class="playlist mb-5">"There are no dogs to display"</div>
+            {% endfor %}
+        </div>
         {% endblock %}
     </body>
 </html>

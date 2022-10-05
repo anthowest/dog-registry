@@ -22,3 +22,10 @@ class History(models.Model):
 
     def __str__(self):
         return self.nationality
+
+class Size(models.Model):
+    size = models.CharField(max_length=10)
+    dogs = models.ManyToManyField(Dog)
+
+    def __str__(self):
+        return self.size
