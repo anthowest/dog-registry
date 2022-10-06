@@ -1,4 +1,5 @@
 import os
+import django_heroku
 
 """
 Django settings for finch_collector project.
@@ -132,5 +133,5 @@ LOGIN_REDIRECT_URL = '/dogs/'
 LOGOUT_REDIRECT_URL = '/'
 
 
-import django_heroku
+
 django_heroku.settings(locals())
