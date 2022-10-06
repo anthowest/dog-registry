@@ -21,6 +21,7 @@
                         <div class="song">
                             <span>{{forloop.counter}}</span>
                             <span><b>{{dog.name}}</b></span>
+                            {% if user.is_authenticated %}
                             <span>
                                 <a href="{% url 'size_dog_assoc' size.pk dog.pk %}?assoc=remove" class="button is-danger is-outlined">
                                     <span class="icon is-small">
@@ -28,6 +29,8 @@
                                     </span>
                                 </a>
                             </span>
+                            {% else %}
+                            {% endif %}
                         </div>
         
                     {% endfor %}
