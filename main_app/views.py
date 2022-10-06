@@ -54,7 +54,7 @@ class DogCreate(CreateView):
         form.instance.user = self.request.user
         return super(DogCreate, self).form_valid(form)
 
-    def get_succuss_url(self):
+    def get_success_url(self):
         return reverse('dog_detail', kwargs={'pk': self.object.pk})
 
 
